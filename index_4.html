@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ponto do Estudante – Centro de Explicações</title>
+<meta name="description" content="Centro de explicações em Amora, Seixal. Apoio escolar do 5.º ao 12.º ano em Matemática, Português, Inglês e mais. Metodologia personalizada para o sucesso académico.">
+<style>
+  :root{
+    --navy:#12233d;
+    --navy-light:#1b3358;
+    --blue:#2f6fed;
+    --blue-dark:#2456c4;
+    --gold:#e8a63b;
+    --bg:#f7f8fb;
+    --ink:#182233;
+    --muted:#5b6577;
+    --white:#ffffff;
+    --border:#e4e7ee;
+    --radius:16px;
+    --shadow:0 12px 30px rgba(18,35,61,0.08);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.6;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .container{
+    max-width:1140px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:14px 28px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:15px;
+    cursor:pointer;
+    border:2px solid transparent;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--blue);color:#fff;box-shadow:0 10px 20px rgba(47,111,237,0.3);}
+  .btn-primary:hover{background:var(--blue-dark);}
+  .btn-ghost{background:transparent;border-color:rgba(255,255,255,0.5);color:#fff;}
+  .btn-ghost:hover{background:rgba(255,255,255,0.12);}
+  .btn-outline{background:transparent;border-color:var(--blue);color:var(--blue);}
+  .btn-outline:hover{background:var(--blue);color:#fff;}
+
+  /* Header */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 24px;
+    max-width:1140px;
+    margin:0 auto;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:800;
+    font-size:20px;
+    color:var(--navy);
+  }
+  .logo-mark{
+    width:38px;height:38px;border-radius:11px;
+    background:linear-gradient(135deg,var(--blue),var(--gold));
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:18px;font-weight:800;
+  }
+  .nav-links{
+    display:flex;
+    gap:32px;
+    list-style:none;
+    margin:0;padding:0;
+    font-weight:600;
+    font-size:15px;
+    color:var(--navy);
+  }
+  .nav-links a{opacity:.85;transition:opacity .15s;}
+  .nav-links a:hover{opacity:1;color:var(--blue);}
+  .nav-cta{display:flex;align-items:center;gap:16px;}
+  .nav-toggle{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    background:none;border:none;cursor:pointer;padding:6px;
+  }
+  .nav-toggle span{width:24px;height:2px;background:var(--navy);border-radius:2px;}
+
+  /* Hero */
+  .hero{
+    background:radial-gradient(circle at 20% 20%, var(--navy-light), var(--navy) 70%);
+    color:#fff;
+    padding:96px 0 120px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    right:-120px;top:-120px;
+    width:420px;height:420px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(232,166,59,0.35),transparent 70%);
+  }
+  .hero-inner{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:48px;
+    align-items:center;
+    position:relative;
+    z-index:2;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.25);
+    padding:8px 16px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.3px;
+    margin-bottom:24px;
+  }
+  .hero h1{
+    font-size:44px;
+    line-height:1.15;
+    margin:0 0 20px;
+    font-weight:800;
+  }
+  .hero h1 span{color:var(--gold);}
+  .hero p{
+    font-size:17px;
+    color:rgba(255,255,255,0.82);
+    max-width:520px;
+    margin:0 0 32px;
+  }
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+  .hero-card{
+    background:#fff;
+    color:var(--ink);
+    border-radius:var(--radius);
+    padding:28px;
+    box-shadow:0 25px 50px rgba(0,0,0,0.35);
+  }
+  .hero-card h3{margin:0 0 6px;font-size:18px;color:var(--navy);}
+  .hero-card p{margin:0 0 20px;color:var(--muted);font-size:14px;}
+  .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .hero-stats div{text-align:center;}
+  .hero-stats strong{display:block;font-size:22px;color:var(--blue);}
+  .hero-stats span{font-size:12px;color:var(--muted);}
+
+  section{padding:88px 0;}
+  .section-head{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 56px;
+  }
+  .tag{
+    display:inline-block;
+    color:var(--blue);
+    background:rgba(47,111,237,0.1);
+    padding:6px 14px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:14px;
+  }
+  .section-head h2{
+    font-size:32px;
+    margin:0 0 14px;
+    color:var(--navy);
+  }
+  .section-head p{color:var(--muted);font-size:16px;margin:0;}
+
+  /* About */
+  .about{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:56px;
+    align-items:center;
+  }
+  .about-visual{
+    background:linear-gradient(135deg,var(--blue),var(--navy));
+    border-radius:24px;
+    height:340px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:64px;
+    box-shadow:var(--shadow);
+  }
+  .about-list{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:14px;}
+  .about-list li{display:flex;gap:12px;align-items:flex-start;color:var(--ink);}
+  .check{
+    flex:none;
+    width:22px;height:22px;border-radius:50%;
+    background:var(--blue);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:13px;margin-top:2px;
+  }
+
+  /* Subjects */
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .card{
+    background:#fff;
+    border-radius:var(--radius);
+    padding:32px 28px;
+    box-shadow:var(--shadow);
+    border:1px solid var(--border);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(18,35,61,0.14);}
+  .card-icon{
+    width:52px;height:52px;border-radius:14px;
+    background:rgba(47,111,237,0.12);
+    color:var(--blue);
+    display:flex;align-items:center;justify-content:center;
+    font-size:24px;
+    margin-bottom:18px;
+  }
+  .card h3{margin:0 0 10px;font-size:19px;color:var(--navy);}
+  .card p{margin:0;color:var(--muted);font-size:14.5px;}
+
+  /* Methodology */
+  .methodology{background:#fff;}
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+    counter-reset:step;
+  }
+  .step{position:relative;padding:28px 20px 20px;text-align:left;}
+  .step-num{
+    width:44px;height:44px;border-radius:50%;
+    background:var(--navy);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;font-size:17px;
+    margin-bottom:16px;
+  }
+  .step h4{margin:0 0 8px;font-size:16.5px;color:var(--navy);}
+  .step p{margin:0;color:var(--muted);font-size:14px;}
+
+  /* Testimonials */
+  .testimonials{background:var(--bg);}
+  .grid-testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .t-card{
+    background:#fff;border-radius:var(--radius);
+    padding:28px;box-shadow:var(--shadow);border:1px solid var(--border);
+  }
+  .stars{color:var(--gold);margin-bottom:14px;font-size:15px;letter-spacing:2px;}
+  .t-quote{color:var(--ink);font-size:15px;margin:0 0 20px;}
+  .t-person{display:flex;align-items:center;gap:12px;}
+  .avatar{
+    width:42px;height:42px;border-radius:50%;
+    background:linear-gradient(135deg,var(--blue),var(--gold));
+    color:#fff;display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:14px;
+  }
+  .t-person strong{display:block;font-size:14px;color:var(--navy);}
+  .t-person span{font-size:12.5px;color:var(--muted);}
+
+  /* CTA band */
+  .cta-band{
+    background:linear-gradient(120deg,var(--navy),var(--blue-dark));
+    color:#fff;
+    border-radius:28px;
+    padding:56px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:32px;
+    flex-wrap:wrap;
+  }
+  .cta-band h2{margin:0 0 10px;font-size:28px;}
+  .cta-band p{margin:0;color:rgba(255,255,255,0.8);max-width:460px;}
+
+  /* Contact */
+  .contact-wrap{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:40px;
+  }
+  .contact-info{
+    background:var(--navy);
+    color:#fff;
+    border-radius:var(--radius);
+    padding:36px;
+  }
+  .contact-info h3{margin-top:0;font-size:20px;}
+  .contact-row{display:flex;gap:14px;margin:20px 0;align-items:flex-start;}
+  .contact-row .ic{
+    width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,0.12);
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .contact-row div p{margin:0;font-size:14px;color:rgba(255,255,255,0.85);}
+  .contact-row div strong{font-size:14px;}
+  .social-row{display:flex;gap:12px;margin-top:28px;}
+  .social-row a{
+    width:36px;height:36px;border-radius:50%;
+    background:rgba(255,255,255,0.12);
+    display:flex;align-items:center;justify-content:center;font-size:14px;
+  }
+  form{
+    background:#fff;border-radius:var(--radius);padding:36px;
+    box-shadow:var(--shadow);border:1px solid var(--border);
+    display:grid;gap:16px;
+  }
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  label{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px;display:block;}
+  input,select,textarea{
+    width:100%;
+    padding:12px 14px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    font-size:14px;
+    font-family:inherit;
+    background:#f9fafc;
+  }
+  textarea{resize:vertical;min-height:100px;}
+  .form-note{font-size:12.5px;color:var(--muted);margin:0;}
+
+  footer{
+    background:var(--navy);
+    color:rgba(255,255,255,0.75);
+    padding:48px 0 24px;
+    margin-top:40px;
+  }
+  .footer-top{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:32px;
+    padding-bottom:32px;
+    border-bottom:1px solid rgba(255,255,255,0.12);
+  }
+  .footer-top h4{color:#fff;font-size:15px;margin:0 0 16px;}
+  .footer-top ul{list-style:none;padding:0;margin:0;display:grid;gap:10px;font-size:14px;}
+  .footer-bottom{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:20px;font-size:13px;flex-wrap:wrap;gap:12px;
+  }
+
+  @media (max-width:900px){
+    .hero-inner,.about,.contact-wrap{grid-template-columns:1fr;}
+    .grid-3,.steps,.grid-testimonials{grid-template-columns:1fr 1fr;}
+    .footer-top{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+    .nav-toggle{display:flex;}
+  }
+  @media (max-width:600px){
+    .hero h1{font-size:32px;}
+    .grid-3,.steps,.grid-testimonials,.footer-top,.form-row{grid-template-columns:1fr;}
+    .cta-band{padding:36px 24px;text-align:center;justify-content:center;}
+    section{padding:64px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="logo">
+      <div class="logo-mark">PE</div>
+      Ponto do Estudante
+    </div>
+    <ul class="nav-links">
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#disciplinas">Disciplinas</a></li>
+      <li><a href="#metodologia">Metodologia</a></li>
+      <li><a href="#contactos">Contactos</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contactos" class="btn btn-outline">Entrar em Contacto</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="container hero-inner">
+    <div>
+      <div class="eyebrow">📍 Amora · 5.º ao 12.º ano</div>
+      <h1>O teu <span>Ponto do Estudante</span> para o sucesso escolar</h1>
+      <p>Explicações personalizadas em Matemática, Português, Inglês e muito mais. Ajudamos alunos do 5.º ao 12.º ano a ganhar confiança, método de estudo e melhores notas.</p>
+      <div class="hero-actions">
+        <a href="#contactos" class="btn btn-primary">Entrar em contacto</a>
+        <a href="#disciplinas" class="btn btn-ghost">Ver disciplinas →</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>Diagnóstico gratuito</h3>
+      <p>Avaliamos o ponto de partida do teu educando e desenhamos um plano de estudo à medida.</p>
+      <div class="hero-stats" style="grid-template-columns:repeat(2,1fr);">
+        <div><strong>5.º–12.º</strong><span>anos de escolaridade</span></div>
+        <div><strong>+95%</strong><span>taxa de sucesso</span></div>
+      </div>
+      <p style="margin:18px 0 0;font-size:13px;color:var(--muted);text-align:center;">✓ Todos os alunos ajudados melhoraram as notas</p>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="container about">
+    <div class="about-visual">🎓</div>
+    <div>
+      <div class="tag">Sobre nós</div>
+      <h2 style="font-size:30px;color:var(--navy);margin:0 0 16px;">Aprendizagem próxima, personalizada e com resultados</h2>
+      <p style="color:var(--muted);">No Ponto do Estudante acreditamos que cada aluno aprende ao seu ritmo. Por isso combinamos explicações em grupos reduzidos (ou individuais) com um acompanhamento próximo às famílias, para que o progresso seja visível em cada período.</p>
+      <ul class="about-list">
+        <li><span class="check">✓</span> Explicadores especializados por disciplina e ano</li>
+        <li><span class="check">✓</span> Grupos reduzidos (máx. 4 alunos) ou aulas individuais</li>
+        <li><span class="check">✓</span> Relatórios de progresso partilhados com encarregados de educação</li>
+        <li><span class="check">✓</span> Sala de estudo disponível para trabalhos de casa e testes</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="disciplinas" style="background:#fff;">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag">Disciplinas</div>
+      <h2>Apoio em todas as disciplinas que importam</h2>
+      <p>Cobrimos o currículo do 5.º ao 12.º ano, incluindo preparação para exames nacionais.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-icon">∑</div>
+        <h3>Matemática</h3>
+        <p>Do 5.º ano ao 12.º, incluindo preparação para exame nacional e MACS.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📘</div>
+        <h3>Português</h3>
+        <p>Compreensão de texto, gramática e preparação para provas e exames.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🇬🇧</div>
+        <h3>Inglês</h3>
+        <p>Do nível básico ao avançado, com foco na oralidade e escrita.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🧪</div>
+        <h3>Físico-Química</h3>
+        <p>Conceitos fundamentais e resolução de exercícios para o secundário.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">➕</div>
+        <h3>Outras disciplinas</h3>
+        <p>Consulta-nos sobre o teu caso — temos apoio para outras disciplinas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="methodology" id="metodologia">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag">Metodologia</div>
+      <h2>Como trabalhamos</h2>
+      <p>Um método simples, em 4 passos, para acompanhar o percurso de cada aluno.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Diagnóstico inicial</h4>
+        <p>Avaliamos o nível atual, dificuldades e objetivos do aluno.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Plano personalizado</h4>
+        <p>Definimos um plano de estudo adaptado ao ritmo e às metas do aluno.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Acompanhamento contínuo</h4>
+        <p>Aulas regulares com material próprio e trabalho de casa orientado.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Avaliação de progresso</h4>
+        <p>Relatórios periódicos partilhados com os encarregados de educação.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="planos" style="background:#fff;">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag">Planos</div>
+      <h2>Escolhe a tua frequência semanal</h2>
+      <p>Entra em contacto connosco por email ou telefone para saberes os valores.</p>
+    </div>
+    <div style="text-align:center;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="mailto:geral.pontodestudo@gmail.com" class="btn btn-primary">Enviar email</a>
+      <a href="tel:9365735170" class="btn btn-outline">Ligar agora</a>
+    </div>
+  </div>
+</section>
+
+<section id="contactos" style="background:#fff;">
+  <div class="container">
+    <div class="section-head">
+      <div class="tag">Contactos</div>
+      <h2>Vamos conversar</h2>
+      <p>Envia-nos uma mensagem ou visita-nos no nosso centro em Amora.</p>
+    </div>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <h3>Ponto do Estudante</h3>
+        <p style="font-size:13px;color:rgba(255,255,255,0.7);margin:-8px 0 0;">Loja 8</p>
+        <div class="contact-row">
+          <div class="ic">📍</div>
+          <div><strong>Morada</strong><p><a href="https://www.google.com/maps/place//data=!4m2!3m1!1s0xd194a1233915b0f:0xf80ae701d6dc6c36?sa=X&ved=1t:8290&ictx=111" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">R. de Bafatá 11, loja 8, 2845-050 Amora</a></p></div>
+        </div>
+        <div class="contact-row">
+          <div class="ic">📞</div>
+          <div><strong>Telefone</strong><p>936 573 5170</p></div>
+        </div>
+        <div class="contact-row">
+          <div class="ic">✉️</div>
+          <div><strong>Email</strong><p>geral.pontodestudo@gmail.com</p></div>
+        </div>
+        <div class="contact-row">
+          <div class="ic">🕒</div>
+          <div><strong>Horário</strong><p>Por marcação</p></div>
+        </div>
+        <div class="social-row">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="Instagram">in</a>
+          <a href="#" aria-label="WhatsApp">w</a>
+        </div>
+      </div>
+      <form onsubmit="return enviarContacto(event);">
+        <div class="form-row">
+          <div>
+            <label for="nome">Nome</label>
+            <input id="nome" type="text" placeholder="O teu nome">
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="o-teu-email@exemplo.pt">
+          </div>
+        </div>
+        <div class="form-row">
+          <div>
+            <label for="ano">Ano de escolaridade</label>
+            <select id="ano">
+              <option>5.º - 6.º ano</option>
+              <option>7.º - 9.º ano</option>
+              <option>10.º - 12.º ano</option>
+            </select>
+          </div>
+          <div>
+            <label for="disciplina">Disciplina</label>
+            <select id="disciplina">
+              <option>Matemática</option>
+              <option>Português</option>
+              <option>Inglês</option>
+              <option>Outra</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" placeholder="Conta-nos um pouco sobre o que procuras..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Enviar mensagem</button>
+        <p class="form-note">Ao enviar, abre-se o teu programa de email para nos escreveres diretamente.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="logo" style="color:#fff;margin-bottom:12px;">
+          <div class="logo-mark">PE</div>
+          Ponto do Estudante
+        </div>
+        <p style="font-size:14px;max-width:280px;">Centro de explicações em Amora, dedicado ao sucesso escolar do 5.º ao 12.º ano.</p>
+      </div>
+      <div>
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#disciplinas">Disciplinas</a></li>
+          <li><a href="#metodologia">Metodologia</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Disciplinas</h4>
+        <ul>
+          <li>Matemática</li>
+          <li>Português</li>
+          <li>Inglês</li>
+          <li>Físico-Química</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contactos</h4>
+        <ul>
+          <li>R. de Bafatá 11, loja 8, Amora</li>
+          <li>936 573 5170</li>
+          <li>geral.pontodestudo@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ponto do Estudante. Todos os direitos reservados.</span>
+      <span>Feito com dedicação em Amora 🇵🇹</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function enviarContacto(event){
+    event.preventDefault();
+    var nome = document.getElementById('nome').value.trim();
+    var emailAluno = document.getElementById('email').value.trim();
+    var ano = document.getElementById('ano').value;
+    var disciplina = document.getElementById('disciplina').value;
+    var mensagem = document.getElementById('mensagem').value.trim();
+
+    var destino = 'geral.pontodestudo@gmail.com';
+    var assunto = 'Contacto via site — ' + (nome || 'Novo interessado');
+    var corpo =
+      'Nome: ' + nome + '\n' +
+      'Email de contacto: ' + emailAluno + '\n' +
+      'Ano de escolaridade: ' + ano + '\n' +
+      'Disciplina: ' + disciplina + '\n\n' +
+      'Mensagem:\n' + mensagem;
+
+    var mailtoLink = 'mailto:' + destino +
+      '?subject=' + encodeURIComponent(assunto) +
+      '&body=' + encodeURIComponent(corpo);
+
+    window.location.href = mailtoLink;
+    return false;
+  }
+
+  document.getElementById('navToggle').addEventListener('click', function(){
+    var links = document.querySelector('.nav-links');
+    var visible = links.style.display === 'flex';
+    links.style.display = visible ? 'none' : 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '64px';
+    links.style.left = '0';
+    links.style.right = '0';
+    links.style.background = '#fff';
+    links.style.padding = '20px 24px';
+    links.style.gap = '18px';
+    links.style.boxShadow = '0 12px 20px rgba(0,0,0,0.08)';
+  });
+</script>
+
+</body>
+</html>
