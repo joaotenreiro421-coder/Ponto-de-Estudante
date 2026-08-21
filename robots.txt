@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ponto-de-estudante.vercel.app/sitemap.xml
